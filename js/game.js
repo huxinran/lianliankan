@@ -27,7 +27,6 @@ const el = {
   home: document.getElementById("home"),
   game: document.getElementById("game"),
   setGrid: document.getElementById("setGrid"),
-  diffSeg: document.getElementById("diffSeg"),
   gameTitle: document.getElementById("gameTitle"),
 };
 
@@ -396,16 +395,12 @@ function buildHome() {
     card.dataset.set = value;
 
     const cover = getImageSet(value).cover;
-    const preview = cover
+    card.title = label; // tooltip only; no on-screen text
+    card.innerHTML = cover
       ? `<div class="set-cover"><img src="${cover}" alt="${label}" draggable="false" /></div>`
       : `<div class="set-preview">${getSetPreview(value, 5)
           .map((f) => `<span class="set-face">${renderTileFace(f)}</span>`)
           .join("")}</div>`;
-
-    card.innerHTML = `
-      ${preview}
-      <div class="set-name">${label}</div>
-      <div class="set-count">${setSize(value)} 种图案</div>`;
 
     card.addEventListener("click", () => {
       state.setName = value;
@@ -444,15 +439,5 @@ document.getElementById("overlayAgain").addEventListener("click", () => {
   newGame();
 });
 document.getElementById("overlayHome").addEventListener("click", showHome);
-
-// Difficulty segmented buttons on the home screen.
-el.diffSeg.addEventListener("click", (e) => {
-  const btn = e.target.closest("button[data-diff]");
-  if (!btn) return;
-  state.difficulty = btn.dataset.diff;
-  el.diffSeg.querySelectorAll("button").forEach((b) =>
-    b.classList.toggle("active", b === btn)
-  );
-});
 
 showHome();
