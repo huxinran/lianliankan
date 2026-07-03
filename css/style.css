@@ -23,6 +23,108 @@ body {
 
 .app { width: 100%; max-width: 900px; }
 
+.hidden { display: none !important; }
+
+/* ===================== HOME SCREEN ===================== */
+.home {
+  width: 100%;
+  max-width: 720px;
+  text-align: center;
+}
+.home-title {
+  font-size: 64px;
+  letter-spacing: 12px;
+  margin: 8px 0 0;
+  color: var(--accent);
+  text-shadow: 0 3px 0 rgba(0,0,0,0.35);
+}
+.home-tagline { color: #c7e0d0; margin: 4px 0 28px; font-size: 16px; }
+.home-label {
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #9fd3b6;
+  margin: 22px 0 12px;
+  text-transform: uppercase;
+}
+
+.set-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+}
+.set-card {
+  background: rgba(255,255,255,0.06);
+  border: 2px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  padding: 14px 12px;
+  cursor: pointer;
+  color: #fdf6e8;
+  text-align: center;
+  transition: transform .1s ease, border-color .15s ease, background .15s ease;
+}
+.set-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.1); }
+.set-card.active {
+  border-color: var(--accent);
+  background: rgba(255,207,92,0.15);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.set-preview {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.set-face {
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--tile-bg);
+  border: 1px solid var(--tile-border);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.set-face .glyph { font-size: 20px; }
+.set-face img { width: 82%; height: 82%; object-fit: contain; }
+.set-name { font-weight: 700; font-size: 17px; }
+.set-count { font-size: 12px; color: #9fd3b6; margin-top: 2px; }
+
+.diff-seg {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.diff-seg button {
+  flex: 1;
+  min-width: 120px;
+  background: rgba(255,255,255,0.08);
+  color: #fdf6e8;
+  border: 2px solid transparent;
+}
+.diff-seg button.active {
+  background: rgba(255,207,92,0.18);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.start-btn {
+  margin-top: 30px;
+  font-size: 20px;
+  padding: 14px 40px;
+  background: var(--accent);
+  color: #3a2a12;
+  border-radius: 30px;
+  box-shadow: 0 6px 0 #c99a2e;
+}
+.start-btn:active { box-shadow: 0 2px 0 #c99a2e; }
+
+.overlay-actions { display: flex; gap: 10px; justify-content: center; }
+.overlay-card button.ghost {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: #8a6b1e;
+}
+
 .topbar {
   display: flex;
   align-items: center;

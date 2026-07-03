@@ -17,15 +17,21 @@ const el = {
   remaining: document.getElementById("remaining"),
   hints: document.getElementById("hints"),
   shuffles: document.getElementById("shuffles"),
-  difficulty: document.getElementById("difficulty"),
-  imageSet: document.getElementById("imageSet"),
   overlay: document.getElementById("overlay"),
   overlayTitle: document.getElementById("overlayTitle"),
   overlaySub: document.getElementById("overlaySub"),
+  // screens + home controls
+  home: document.getElementById("home"),
+  game: document.getElementById("game"),
+  setGrid: document.getElementById("setGrid"),
+  diffSeg: document.getElementById("diffSeg"),
+  gameTitle: document.getElementById("gameTitle"),
 };
 
 const state = {
   cfg: null,
+  setName: DEFAULT_SET,   // chosen on the home screen
+  difficulty: "normal",   // chosen on the home screen
   rows: 0,
   cols: 0,
   cell: 56,
@@ -53,8 +59,7 @@ function shuffleArray(arr) {
 
 /* ---------- board generation ---------- */
 function newGame() {
-  const diff = el.difficulty.value;
-  const cfg = DIFFICULTY[diff];
+  const cfg = DIFFICULTY[state.difficulty];
   state.cfg = cfg;
   state.rows = cfg.rows;
   state.cols = cfg.cols;
@@ -71,7 +76,7 @@ function newGame() {
 
   // Pick faces and build a pool where every face appears an even number
   // of times — this guarantees the board can be fully cleared.
-  const faces = pickImageSet(cfg.types, el.imageSet.value);
+  const faces = pickImageSet(cfg.types, state.setName);
   const facePool = [];
   for (let i = 0; i < pairCount; i++) {
     facePool.push(faces[i % faces.length]);
@@ -371,20 +376,72 @@ function hideOverlay() {
   el.overlay.classList.add("hidden");
 }
 
+/* ---------- home screen ---------- */
+const DIFF_LABEL = { easy: "简单", normal: "普通", hard: "困难" };
+
+// Build the selectable image-set cards on the home screen.
+function buildHome() {
+  el.setGrid.innerHTML = "";
+  for (const { value, label } of listImageSets()) {
+    const card = document.createElement("button");
+    card.className = "set-card" + (value === state.setName ? " active" : "");
+    card.dataset.set = value;
+
+    const preview = getSetPreview(value, 5)
+      .map((f) => `<span class="set-face">${renderTileFace(f)}</span>`)
+      .join("");
+
+    card.innerHTML = `
+      <div class="set-preview">${preview}</div>
+      <div class="set-name">${label}</div>
+      <div class="set-count">${setSize(value)} 种图案</div>`;
+
+    card.addEventListener("click", () => {
+      state.setName = value;
+      el.setGrid.querySelectorAll(".set-card").forEach((c) =>
+        c.classList.toggle("active", c === card)
+      );
+    });
+    el.setGrid.appendChild(card);
+  }
+}
+
+function showHome() {
+  clearInterval(state.timer);
+  hideOverlay();
+  buildHome();
+  el.game.classList.add("hidden");
+  el.home.classList.remove("hidden");
+}
+
+function startGame() {
+  el.gameTitle.textContent =
+    getImageSet(state.setName).label + " · " + DIFF_LABEL[state.difficulty];
+  el.home.classList.add("hidden");
+  el.game.classList.remove("hidden");
+  newGame();
+}
+
 /* ---------- wire up ---------- */
 document.getElementById("newGame").addEventListener("click", newGame);
 document.getElementById("hintBtn").addEventListener("click", useHint);
 document.getElementById("shuffleBtn").addEventListener("click", useShuffle);
-document.getElementById("overlayBtn").addEventListener("click", newGame);
-el.difficulty.addEventListener("change", newGame);
-el.imageSet.addEventListener("change", newGame);
+document.getElementById("homeBtn").addEventListener("click", showHome);
+document.getElementById("startBtn").addEventListener("click", startGame);
+document.getElementById("overlayAgain").addEventListener("click", () => {
+  hideOverlay();
+  newGame();
+});
+document.getElementById("overlayHome").addEventListener("click", showHome);
 
-// Populate the image-set dropdown from config, then start.
-for (const { value, label } of listImageSets()) {
-  const opt = document.createElement("option");
-  opt.value = value;
-  opt.textContent = label;
-  el.imageSet.appendChild(opt);
-}
+// Difficulty segmented buttons on the home screen.
+el.diffSeg.addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-diff]");
+  if (!btn) return;
+  state.difficulty = btn.dataset.diff;
+  el.diffSeg.querySelectorAll("button").forEach((b) =>
+    b.classList.toggle("active", b === btn)
+  );
+});
 
-newGame();
+showHome();

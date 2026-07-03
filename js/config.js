@@ -91,6 +91,22 @@ function listImageSets() {
   return Object.entries(IMAGE_SETS).map(([value, s]) => ({ value, label: s.label }));
 }
 
+/** A few sample faces from a set, for the home-screen preview cards. */
+function getSetPreview(name, n = 5) {
+  const set = getImageSet(name);
+  const faces =
+    set.kind === "emoji"
+      ? set.faces.map((e) => ({ kind: "emoji", value: e }))
+      : set.files.map((f) => ({ kind: "image", value: (set.dir || "") + f }));
+  return faces.slice(0, n);
+}
+
+/** How many distinct faces a set actually has (for the home-screen badge). */
+function setSize(name) {
+  const set = getImageSet(name);
+  return set.kind === "emoji" ? set.faces.length : set.files.length;
+}
+
 /** HTML for a single tile face (image or emoji). */
 function renderTileFace(face) {
   if (face.kind === "image") {
