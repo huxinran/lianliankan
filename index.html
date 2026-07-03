@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>连连看 · Lianliankan</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1>连连看</h1>
+      <div class="stats">
+        <span class="stat">⏱ <b id="time">00:00</b></span>
+        <span class="stat">🀄 剩余 <b id="remaining">0</b></span>
+        <span class="stat">💡 提示 <b id="hints">5</b></span>
+        <span class="stat">🔀 洗牌 <b id="shuffles">3</b></span>
+      </div>
+    </header>
+
+    <div class="controls">
+      <label>难度
+        <select id="difficulty">
+          <option value="easy">简单 (6×6)</option>
+          <option value="normal" selected>普通 (8×6)</option>
+          <option value="hard">困难 (10×8)</option>
+        </select>
+      </label>
+      <button id="newGame">新游戏</button>
+      <button id="hintBtn">提示</button>
+      <button id="shuffleBtn">洗牌</button>
+    </div>
+
+    <div id="boardWrap" class="board-wrap">
+      <div id="board" class="board"></div>
+      <svg id="linkLayer" class="link-layer"></svg>
+      <div id="message" class="message"></div>
+    </div>
+
+    <div id="overlay" class="overlay hidden">
+      <div class="overlay-card">
+        <h2 id="overlayTitle">🎉 通关！</h2>
+        <p id="overlaySub"></p>
+        <button id="overlayBtn">再来一局</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/pathfinder.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
