@@ -377,7 +377,7 @@ function showMessage(text) {
 /* ---------- win / overlay ---------- */
 function win() {
   clearInterval(state.timer);
-  const winImg = getImageSet(state.setName).win;
+  const winImg = assetUrl(getImageSet(state.setName).win);
   if (winImg) {
     el.overlayImg.src = winImg;
     el.overlayImg.classList.remove("hidden");
@@ -403,7 +403,7 @@ function buildHome() {
     card.className = "set-card" + (value === state.setName ? " active" : "");
     card.dataset.set = value;
 
-    const cover = getImageSet(value).cover;
+    const cover = assetUrl(getImageSet(value).cover);
     card.title = label; // tooltip only; no on-screen text
     card.innerHTML = cover
       ? `<div class="set-cover"><img src="${cover}" alt="${label}" draggable="false" /></div>`

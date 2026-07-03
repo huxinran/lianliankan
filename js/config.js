@@ -18,6 +18,14 @@
  *  back to the built-in emoji set so it always stays playable.
  * ============================================================ */
 
+// Bump this whenever you REPLACE image files. It appends ?v=… to every
+// image URL so browsers fetch the new versions instead of cached ones.
+const ASSET_VERSION = "4";
+function assetUrl(path) {
+  if (!path) return path;
+  return path + (path.includes("?") ? "&" : "?") + "v=" + ASSET_VERSION;
+}
+
 const IMAGE_SETS = {
   /* ---- Example image set (uncomment once you add the files) ----
   cats: {
@@ -97,7 +105,7 @@ function pickImageSet(count, setName) {
   const pool =
     set.kind === "emoji"
       ? set.faces.map((e) => ({ kind: "emoji", value: e }))
-      : set.files.map((f) => ({ kind: "image", value: (set.dir || "") + f }));
+      : set.files.map((f) => ({ kind: "image", value: assetUrl((set.dir || "") + f) }));
 
   // Shuffle so a large set shows a fresh subset each game.
   const shuffled = pool.slice();
@@ -120,7 +128,7 @@ function getSetPreview(name, n = 5) {
   const faces =
     set.kind === "emoji"
       ? set.faces.map((e) => ({ kind: "emoji", value: e }))
-      : set.files.map((f) => ({ kind: "image", value: (set.dir || "") + f }));
+      : set.files.map((f) => ({ kind: "image", value: assetUrl((set.dir || "") + f) }));
   return faces.slice(0, n);
 }
 
