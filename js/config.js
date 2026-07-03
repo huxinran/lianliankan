@@ -19,18 +19,6 @@
  * ============================================================ */
 
 const IMAGE_SETS = {
-  /* Built-in fallback — always available, needs no image files. */
-  emoji: {
-    label: "Emoji（默认）",
-    kind: "emoji",
-    faces: [
-      "🍎","🍌","🍇","🍉","🍓","🍑","🍒","🍍",
-      "🥝","🥑","🌶","🥕","🌽","🍄","🌻","🌸",
-      "🐶","🐱","🦊","🐼","🐨","🐯","🦁","🐸",
-      "🐵","🦄","🐙","🦋","🐝","🐞","🐢","🐳",
-    ],
-  },
-
   /* ---- Example image set (uncomment once you add the files) ----
   cats: {
     label: "猫咪",
@@ -63,6 +51,7 @@ const IMAGE_SETS = {
   /* >>> The /add-image-set skill appends new sets below this line <<< */
 };
 
+// Fallback set used when a chosen set has too few faces for the difficulty.
 const DEFAULT_SET = "poodle";
 
 /** Resolve a set by name, falling back to the default. */

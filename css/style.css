@@ -26,6 +26,11 @@ body {
 
 .app { width: 100%; max-width: 900px; }
 
+/* Game screen can grow with big tiles; scroll if wider than the viewport. */
+#game { max-width: 100%; overflow-x: auto; text-align: center; }
+#game .topbar, #game .controls { justify-content: center; }
+#game .board-wrap { text-align: left; }
+
 .hidden { display: none !important; }
 
 /* ===================== HOME SCREEN ===================== */

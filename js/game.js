@@ -3,9 +3,9 @@
  * ============================================================ */
 
 const DIFFICULTY = {
-  easy:   { rows: 6, cols: 6,  types: 6,  cell: 62, hints: 5, shuffles: 3 },
-  normal: { rows: 6, cols: 8,  types: 10, cell: 58, hints: 5, shuffles: 3 },
-  hard:   { rows: 8, cols: 10, types: 15, cell: 50, hints: 5, shuffles: 3 },
+  easy:   { rows: 6, cols: 6,  types: 6,  cell: 124, hints: 5, shuffles: 3 },
+  normal: { rows: 6, cols: 8,  types: 10, cell: 116, hints: 5, shuffles: 3 },
+  hard:   { rows: 8, cols: 10, types: 15, cell: 100, hints: 5, shuffles: 3 },
 };
 
 const el = {
