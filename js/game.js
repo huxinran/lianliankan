@@ -403,11 +403,10 @@ function buildHome() {
           .map((f) => `<span class="set-face">${renderTileFace(f)}</span>`)
           .join("")}</div>`;
 
+    // The icon IS the start button: pick this set and launch immediately.
     card.addEventListener("click", () => {
       state.setName = value;
-      el.setGrid.querySelectorAll(".set-card").forEach((c) =>
-        c.classList.toggle("active", c === card)
-      );
+      startGame();
     });
     el.setGrid.appendChild(card);
   }
@@ -434,7 +433,6 @@ document.getElementById("newGame").addEventListener("click", newGame);
 document.getElementById("hintBtn").addEventListener("click", useHint);
 document.getElementById("shuffleBtn").addEventListener("click", useShuffle);
 document.getElementById("homeBtn").addEventListener("click", showHome);
-document.getElementById("startBtn").addEventListener("click", startGame);
 document.getElementById("overlayAgain").addEventListener("click", () => {
   hideOverlay();
   newGame();
