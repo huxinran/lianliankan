@@ -387,12 +387,15 @@ function buildHome() {
     card.className = "set-card" + (value === state.setName ? " active" : "");
     card.dataset.set = value;
 
-    const preview = getSetPreview(value, 5)
-      .map((f) => `<span class="set-face">${renderTileFace(f)}</span>`)
-      .join("");
+    const cover = getImageSet(value).cover;
+    const preview = cover
+      ? `<div class="set-cover"><img src="${cover}" alt="${label}" draggable="false" /></div>`
+      : `<div class="set-preview">${getSetPreview(value, 5)
+          .map((f) => `<span class="set-face">${renderTileFace(f)}</span>`)
+          .join("")}</div>`;
 
     card.innerHTML = `
-      <div class="set-preview">${preview}</div>
+      ${preview}
       <div class="set-name">${label}</div>
       <div class="set-count">${setSize(value)} 种图案</div>`;
 
