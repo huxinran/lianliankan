@@ -1,11 +1,14 @@
 :root {
   --cell: 56px;               /* set by JS per difficulty */
-  --tile-bg: #fff8ec;
-  --tile-border: #e0c9a6;
-  --tile-shadow: rgba(120, 80, 20, 0.25);
-  --board-bg: #2f6b52;
-  --accent: #ffcf5c;
-  --link: #ff5252;
+  --tile-bg: #ffffff;
+  --tile-border: #ffd6e7;
+  --tile-shadow: rgba(255, 150, 190, 0.35);
+  --board-bg: #fff2f8;
+  --accent: #ff9ec4;
+  --accent-deep: #e86fa0;
+  --link: #ff5e9c;
+  --ink: #6b5560;
+  --ink-soft: #b58aa0;
 }
 
 * { box-sizing: border-box; }
@@ -13,8 +16,8 @@
 body {
   margin: 0;
   font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
-  background: linear-gradient(160deg, #143d2b, #0c261a);
-  color: #fdf6e8;
+  background: linear-gradient(160deg, #fff5fa 0%, #f3f8ff 55%, #fdf3ff 100%);
+  color: var(--ink);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -36,15 +39,15 @@ body {
   letter-spacing: 12px;
   margin: 8px 0 0;
   color: var(--accent);
-  text-shadow: 0 3px 0 rgba(0,0,0,0.35);
+  text-shadow: 0 3px 0 #fff, 0 4px 8px rgba(255,140,180,0.35);
 }
-.home-tagline { color: #c7e0d0; margin: 4px 0 28px; font-size: 16px; }
+.home-tagline { color: var(--ink-soft); margin: 4px 0 28px; font-size: 16px; }
 .home-label {
   text-align: left;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 2px;
-  color: #9fd3b6;
+  color: var(--accent-deep);
   margin: 22px 0 12px;
   text-transform: uppercase;
 }
@@ -55,20 +58,21 @@ body {
   gap: 14px;
 }
 .set-card {
-  background: rgba(255,255,255,0.06);
-  border: 2px solid rgba(255,255,255,0.14);
-  border-radius: 14px;
+  background: #ffffff;
+  border: 2px solid #ffe3ee;
+  border-radius: 16px;
   padding: 14px 12px;
   cursor: pointer;
-  color: #fdf6e8;
+  color: var(--ink);
   text-align: center;
-  transition: transform .1s ease, border-color .15s ease, background .15s ease;
+  box-shadow: 0 6px 16px rgba(255,160,195,0.18);
+  transition: transform .1s ease, border-color .15s ease, box-shadow .15s ease;
 }
-.set-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.1); }
+.set-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(255,140,185,0.28); }
 .set-card.active {
   border-color: var(--accent);
-  background: rgba(255,207,92,0.15);
-  box-shadow: 0 0 0 2px var(--accent);
+  background: #fff5fa;
+  box-shadow: 0 0 0 3px var(--accent), 0 8px 18px rgba(255,140,185,0.3);
 }
 .set-preview {
   display: flex;
@@ -87,7 +91,7 @@ body {
 .set-face .glyph { font-size: 20px; }
 .set-face img { width: 82%; height: 82%; object-fit: contain; }
 .set-name { font-weight: 700; font-size: 17px; }
-.set-count { font-size: 12px; color: #9fd3b6; margin-top: 2px; }
+.set-count { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
 
 .diff-seg {
   display: flex;
@@ -97,14 +101,15 @@ body {
 .diff-seg button {
   flex: 1;
   min-width: 120px;
-  background: rgba(255,255,255,0.08);
-  color: #fdf6e8;
-  border: 2px solid transparent;
+  background: #ffffff;
+  color: var(--ink);
+  border: 2px solid #ffe3ee;
+  box-shadow: 0 4px 12px rgba(255,160,195,0.15);
 }
 .diff-seg button.active {
-  background: rgba(255,207,92,0.18);
+  background: #fff5fa;
   border-color: var(--accent);
-  color: var(--accent);
+  color: var(--accent-deep);
 }
 
 .start-btn {
@@ -112,17 +117,17 @@ body {
   font-size: 20px;
   padding: 14px 40px;
   background: var(--accent);
-  color: #3a2a12;
+  color: #ffffff;
   border-radius: 30px;
-  box-shadow: 0 6px 0 #c99a2e;
+  box-shadow: 0 6px 0 var(--accent-deep);
 }
-.start-btn:active { box-shadow: 0 2px 0 #c99a2e; }
+.start-btn:active { box-shadow: 0 2px 0 var(--accent-deep); }
 
 .overlay-actions { display: flex; gap: 10px; justify-content: center; }
 .overlay-card button.ghost {
   background: transparent;
   border: 2px solid var(--accent);
-  color: #8a6b1e;
+  color: var(--accent-deep);
 }
 
 .topbar {
@@ -137,11 +142,11 @@ body {
   margin: 0;
   font-size: 34px;
   letter-spacing: 6px;
-  color: var(--accent);
-  text-shadow: 0 2px 0 rgba(0,0,0,0.3);
+  color: var(--accent-deep);
+  text-shadow: 0 2px 0 #fff;
 }
 .stats { display: flex; gap: 16px; flex-wrap: wrap; font-size: 15px; }
-.stat b { color: var(--accent); }
+.stat b { color: var(--accent-deep); }
 
 .controls {
   display: flex;
@@ -154,11 +159,11 @@ body {
 select, button {
   font: inherit;
   padding: 8px 14px;
-  border-radius: 10px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
-  background: #f4e4c1;
-  color: #3a2a12;
+  background: #ffe1ec;
+  color: var(--accent-deep);
   font-weight: 600;
   transition: transform .08s ease, filter .15s ease;
 }
@@ -169,9 +174,10 @@ button:active { transform: translateY(1px); }
   position: relative;
   display: inline-block;
   background: var(--board-bg);
-  border-radius: 14px;
+  border: 3px solid #ffe3ee;
+  border-radius: 20px;
   padding: 6px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  box-shadow: 0 14px 34px rgba(255,150,190,0.28);
 }
 
 .board {
@@ -233,7 +239,7 @@ button:active { transform: translateY(1px); }
   stroke-width: 5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 6px rgba(255,82,82,0.8));
+  filter: drop-shadow(0 0 6px rgba(255,94,156,0.85));
   stroke-dasharray: 1000;
   animation: dashIn .25s ease-out forwards;
 }
@@ -244,7 +250,7 @@ button:active { transform: translateY(1px); }
   left: 50%;
   bottom: 10px;
   transform: translateX(-50%);
-  background: rgba(0,0,0,0.75);
+  background: rgba(120, 70, 95, 0.9);
   color: #fff;
   padding: 8px 16px;
   border-radius: 20px;
@@ -259,7 +265,8 @@ button:active { transform: translateY(1px); }
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(255, 200, 220, 0.55);
+  backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -267,13 +274,14 @@ button:active { transform: translateY(1px); }
 }
 .overlay.hidden { display: none; }
 .overlay-card {
-  background: #fdf6e8;
-  color: #2a1c08;
+  background: #ffffff;
+  color: var(--ink);
   padding: 32px 44px;
-  border-radius: 18px;
+  border-radius: 24px;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  border: 3px solid #ffe3ee;
+  box-shadow: 0 24px 60px rgba(255,140,185,0.4);
 }
-.overlay-card h2 { margin: 0 0 8px; font-size: 30px; }
-.overlay-card p { margin: 0 0 20px; color: #6a5636; }
-.overlay-card button { background: var(--accent); font-size: 16px; padding: 10px 24px; }
+.overlay-card h2 { margin: 0 0 8px; font-size: 30px; color: var(--accent-deep); }
+.overlay-card p { margin: 0 0 20px; color: var(--ink-soft); }
+.overlay-card button { background: var(--accent); color: #fff; font-size: 16px; padding: 10px 24px; }
