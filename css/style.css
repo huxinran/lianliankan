@@ -1,5 +1,6 @@
 :root {
-  --cell: 56px;               /* set by JS per difficulty */
+  --cell-w: 56px;             /* tile width  (set by JS per difficulty) */
+  --cell-h: 84px;             /* tile height (set by JS, matches image ratio) */
   --tile-bg: #ffffff;
   --tile-border: #e0d6fb;
   --tile-shadow: rgba(150, 120, 230, 0.35);
@@ -206,8 +207,8 @@ button:active { transform: translateY(1px); }
 
 .tile {
   position: absolute;
-  width: var(--cell);
-  height: var(--cell);
+  width: var(--cell-w);
+  height: var(--cell-h);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -220,8 +221,8 @@ button:active { transform: translateY(1px); }
   overflow: hidden;
   transition: transform .08s ease, box-shadow .1s ease, opacity .18s ease;
 }
-.tile .glyph { font-size: calc(var(--cell) * 0.6); line-height: 1; }
-.tile img { width: 82%; height: 82%; object-fit: contain; pointer-events: none; }
+.tile .glyph { font-size: calc(var(--cell-w) * 0.6); line-height: 1; }
+.tile img { width: 96%; height: 96%; object-fit: contain; pointer-events: none; }
 .tile:hover { transform: translateY(-2px); }
 .tile.selected {
   border-color: var(--accent);

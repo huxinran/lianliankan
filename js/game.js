@@ -8,6 +8,9 @@ const DIFFICULTY = {
   hard:   { rows: 8, cols: 10, types: 15, cell: 100, hints: 5, shuffles: 3 },
 };
 
+// Tile aspect ratio (height / width) — matches the poodle art (1024×1536).
+const TILE_ASPECT = 1.5;
+
 const el = {
   board: document.getElementById("board"),
   wrap: document.getElementById("boardWrap"),
@@ -34,7 +37,8 @@ const state = {
   difficulty: "normal",   // chosen on the home screen
   rows: 0,
   cols: 0,
-  cell: 56,
+  cellW: 56,
+  cellH: 84,
   grid: [],          // extended grid: (rows+2) x (cols+2), null or tile
   tiles: new Map(),  // tileKey -> { id, face, gr, gc, node }
   selected: null,    // currently selected tile object
@@ -63,13 +67,15 @@ function newGame() {
   state.cfg = cfg;
   state.rows = cfg.rows;
   state.cols = cfg.cols;
-  state.cell = cfg.cell;
+  state.cellW = cfg.cell;
+  state.cellH = Math.round(cfg.cell * TILE_ASPECT);
   state.hints = cfg.hints;
   state.shuffles = cfg.shuffles;
   state.selected = null;
   state.busy = false;
 
-  document.documentElement.style.setProperty("--cell", cfg.cell + "px");
+  document.documentElement.style.setProperty("--cell-w", state.cellW + "px");
+  document.documentElement.style.setProperty("--cell-h", state.cellH + "px");
 
   const total = cfg.rows * cfg.cols; // guaranteed even (see DIFFICULTY)
   const pairCount = total / 2;
@@ -115,20 +121,21 @@ function newGame() {
 function render() {
   const H = state.rows + 2;
   const W = state.cols + 2;
-  const px = state.cell;
-  el.board.style.width = W * px + "px";
-  el.board.style.height = H * px + "px";
-  el.linkLayer.setAttribute("width", W * px);
-  el.linkLayer.setAttribute("height", H * px);
-  el.linkLayer.style.width = W * px + "px";
-  el.linkLayer.style.height = H * px + "px";
+  const cw = state.cellW;
+  const ch = state.cellH;
+  el.board.style.width = W * cw + "px";
+  el.board.style.height = H * ch + "px";
+  el.linkLayer.setAttribute("width", W * cw);
+  el.linkLayer.setAttribute("height", H * ch);
+  el.linkLayer.style.width = W * cw + "px";
+  el.linkLayer.style.height = H * ch + "px";
 
   el.board.innerHTML = "";
   for (const tile of state.tiles.values()) {
     const node = document.createElement("div");
     node.className = "tile";
-    node.style.left = tile.gc * px + "px";
-    node.style.top = tile.gr * px + "px";
+    node.style.left = tile.gc * cw + "px";
+    node.style.top = tile.gr * ch + "px";
     node.innerHTML = renderTileFace(tile.face);
     node.addEventListener("click", () => onTileClick(tile));
     tile.node = node;
@@ -232,9 +239,10 @@ function matchTiles(a, b, path) {
 
 /* ---------- connection line drawing ---------- */
 function drawLink(path) {
-  const px = state.cell;
+  const cw = state.cellW;
+  const ch = state.cellH;
   const pts = path
-    .map((p) => `${p.gc * px + px / 2},${p.gr * px + px / 2}`)
+    .map((p) => `${p.gc * cw + cw / 2},${p.gr * ch + ch / 2}`)
     .join(" ");
   const poly = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
   poly.setAttribute("points", pts);
