@@ -33,7 +33,7 @@ const IMAGE_SETS = {
   ---------------------------------------------------------------- */
 
   cat: {
-    label: "猫猫日常 🐱",
+    label: "茶茶的一天 🐱",
     kind: "image",
     cover: "images/cat/cover.png", // shown on the home-screen picker card
     win: "images/win/cat.png",     // shown on the win popup
