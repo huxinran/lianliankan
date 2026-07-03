@@ -48,6 +48,22 @@ const IMAGE_SETS = {
     ],
   },
 
+  cat: {
+    label: "猫猫日常 🐱",
+    kind: "image",
+    cover: "images/cat/cover.png", // shown on the home-screen picker card
+    dir: "images/cat/",
+    files: [
+      "01-waking-up.png", "02-brushing-teeth.png", "03-eating-breakfast.png",
+      "04-reading-book.png", "05-drinking-coffee.png", "06-working-laptop.png",
+      "07-cooking.png", "08-cleaning.png", "09-grocery-shopping.png",
+      "10-watering-plant.png", "11-painting.png", "12-playing-game.png",
+      "13-listening-music.png", "14-exercising.png", "15-taking-bath.png",
+      "16-napping.png", "17-walking-outside.png", "18-calling-phone.png",
+      "19-eating-snack.png", "20-going-to-bed.png",
+    ],
+  },
+
   /* >>> The /add-image-set skill appends new sets below this line <<< */
 };
 
