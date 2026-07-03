@@ -150,6 +150,17 @@ body {
 }
 .start-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--accent-deep); }
 
+.diff-select {
+  margin-top: -14px;
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 16px;
+  background: #ffffff;
+  color: var(--accent-deep);
+  border: 2px solid var(--tile-border);
+  box-shadow: 0 3px 8px rgba(150,120,230,0.18);
+}
+
 .overlay-actions { display: flex; gap: 10px; justify-content: center; }
 .overlay-card button.ghost {
   background: transparent;

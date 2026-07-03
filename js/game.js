@@ -27,6 +27,7 @@ const el = {
   home: document.getElementById("home"),
   game: document.getElementById("game"),
   setGrid: document.getElementById("setGrid"),
+  diffSelect: document.getElementById("diffSelect"),
   gameTitle: document.getElementById("gameTitle"),
 };
 
@@ -439,5 +440,11 @@ document.getElementById("overlayAgain").addEventListener("click", () => {
   newGame();
 });
 document.getElementById("overlayHome").addEventListener("click", showHome);
+
+// Difficulty dropdown on the home screen.
+state.difficulty = el.diffSelect.value;
+el.diffSelect.addEventListener("change", () => {
+  state.difficulty = el.diffSelect.value;
+});
 
 showHome();
