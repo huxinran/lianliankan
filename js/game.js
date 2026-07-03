@@ -23,6 +23,7 @@ const el = {
   overlay: document.getElementById("overlay"),
   overlayTitle: document.getElementById("overlayTitle"),
   overlaySub: document.getElementById("overlaySub"),
+  overlayImg: document.getElementById("overlayImg"),
   // screens + home controls
   home: document.getElementById("home"),
   game: document.getElementById("game"),
@@ -376,6 +377,13 @@ function showMessage(text) {
 /* ---------- win / overlay ---------- */
 function win() {
   clearInterval(state.timer);
+  const winImg = getImageSet(state.setName).win;
+  if (winImg) {
+    el.overlayImg.src = winImg;
+    el.overlayImg.classList.remove("hidden");
+  } else {
+    el.overlayImg.classList.add("hidden");
+  }
   el.overlayTitle.textContent = "🎉 通关！";
   el.overlaySub.textContent = `用时 ${el.time.textContent}`;
   el.overlay.classList.remove("hidden");

@@ -36,6 +36,7 @@ const IMAGE_SETS = {
     label: "猫猫日常 🐱",
     kind: "image",
     cover: "images/cat/cover.png", // shown on the home-screen picker card
+    win: "images/win/cat.png",     // shown on the win popup
     dir: "images/cat/",
     files: [
       "01-waking-up.png", "02-brushing-teeth.png", "03-eating-breakfast.png",
@@ -52,6 +53,7 @@ const IMAGE_SETS = {
     label: "牛牛运动会 🐩",
     kind: "image",
     cover: "images/poodle/cover.png", // shown on the home-screen picker card
+    win: "images/win/poodle.png",     // shown on the win popup
     dir: "images/poodle/",
     files: [
       "01-american-football.png", "02-soccer.png", "03-basketball.png",

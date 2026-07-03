@@ -319,6 +319,13 @@ button:active { transform: translateY(1px); }
   border: 3px solid #e6ddfb;
   box-shadow: 0 24px 60px rgba(140,110,225,0.42);
 }
+.overlay-img {
+  width: 160px;
+  height: auto;
+  display: block;
+  margin: 0 auto 6px;
+  filter: drop-shadow(0 6px 14px rgba(150,120,230,0.35));
+}
 .overlay-card h2 { margin: 0 0 8px; font-size: 30px; color: var(--accent-deep); }
 .overlay-card p { margin: 0 0 20px; color: var(--ink-soft); }
 .overlay-card button { background: var(--accent); color: #fff; font-size: 16px; padding: 10px 24px; }
