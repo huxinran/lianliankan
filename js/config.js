@@ -45,7 +45,7 @@ const IMAGE_SETS = {
   ---------------------------------------------------------------- */
 
   poodle: {
-    label: "贵宾犬运动会 🐩",
+    label: "牛牛运动会 🐩",
     kind: "image",
     cover: "images/poodle/cover.png", // shown on the home-screen picker card
     dir: "images/poodle/",
