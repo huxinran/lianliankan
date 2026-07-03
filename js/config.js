@@ -33,7 +33,7 @@ const IMAGE_SETS = {
   ---------------------------------------------------------------- */
 
   cat: {
-    label: "茶茶的一天 🐱",
+    label: "茶茶的一天",
     kind: "image",
     cover: "images/cat/cover.png", // shown on the home-screen picker card
     win: "images/win/cat.png",     // shown on the win popup
@@ -50,7 +50,7 @@ const IMAGE_SETS = {
   },
 
   poodle: {
-    label: "牛牛运动会 🐩",
+    label: "牛牛运动会",
     kind: "image",
     cover: "images/poodle/cover.png", // shown on the home-screen picker card
     win: "images/win/poodle.png",     // shown on the win popup
