@@ -1,14 +1,14 @@
 :root {
   --cell: 56px;               /* set by JS per difficulty */
   --tile-bg: #ffffff;
-  --tile-border: #ffd6e7;
-  --tile-shadow: rgba(255, 150, 190, 0.35);
-  --board-bg: #fff2f8;
-  --accent: #ff9ec4;
-  --accent-deep: #e86fa0;
-  --link: #ff5e9c;
-  --ink: #6b5560;
-  --ink-soft: #b58aa0;
+  --tile-border: #e0d6fb;
+  --tile-shadow: rgba(150, 120, 230, 0.35);
+  --board-bg: #f6f3ff;
+  --accent: #b9a7f0;
+  --accent-deep: #8a6fe0;
+  --link: #7c5cff;
+  --ink: #5b5270;
+  --ink-soft: #9a8ec0;
 }
 
 * { box-sizing: border-box; }
@@ -16,7 +16,7 @@
 body {
   margin: 0;
   font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
-  background: linear-gradient(160deg, #fff5fa 0%, #f3f8ff 55%, #fdf3ff 100%);
+  background: linear-gradient(160deg, #f8f5ff 0%, #eef0ff 55%, #f6f1ff 100%);
   color: var(--ink);
   min-height: 100vh;
   display: flex;
@@ -39,7 +39,7 @@ body {
   letter-spacing: 12px;
   margin: 8px 0 0;
   color: var(--accent);
-  text-shadow: 0 3px 0 #fff, 0 4px 8px rgba(255,140,180,0.35);
+  text-shadow: 0 3px 0 #fff, 0 4px 8px rgba(150,120,230,0.4);
 }
 .home-tagline { color: var(--ink-soft); margin: 4px 0 28px; font-size: 16px; }
 .home-label {
@@ -59,20 +59,20 @@ body {
 }
 .set-card {
   background: #ffffff;
-  border: 2px solid #ffe3ee;
+  border: 2px solid #e6ddfb;
   border-radius: 16px;
   padding: 14px 12px;
   cursor: pointer;
   color: var(--ink);
   text-align: center;
-  box-shadow: 0 6px 16px rgba(255,160,195,0.18);
+  box-shadow: 0 6px 16px rgba(150,120,230,0.18);
   transition: transform .1s ease, border-color .15s ease, box-shadow .15s ease;
 }
-.set-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(255,140,185,0.28); }
+.set-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(140,110,225,0.3); }
 .set-card.active {
   border-color: var(--accent);
-  background: #fff5fa;
-  box-shadow: 0 0 0 3px var(--accent), 0 8px 18px rgba(255,140,185,0.3);
+  background: #f6f2ff;
+  box-shadow: 0 0 0 3px var(--accent), 0 8px 18px rgba(140,110,225,0.35);
 }
 .set-preview {
   display: flex;
@@ -103,11 +103,11 @@ body {
   min-width: 120px;
   background: #ffffff;
   color: var(--ink);
-  border: 2px solid #ffe3ee;
-  box-shadow: 0 4px 12px rgba(255,160,195,0.15);
+  border: 2px solid #e6ddfb;
+  box-shadow: 0 4px 12px rgba(150,120,230,0.15);
 }
 .diff-seg button.active {
-  background: #fff5fa;
+  background: #f6f2ff;
   border-color: var(--accent);
   color: var(--accent-deep);
 }
@@ -162,7 +162,7 @@ select, button {
   border-radius: 12px;
   border: none;
   cursor: pointer;
-  background: #ffe1ec;
+  background: #ece5fc;
   color: var(--accent-deep);
   font-weight: 600;
   transition: transform .08s ease, filter .15s ease;
@@ -174,10 +174,10 @@ button:active { transform: translateY(1px); }
   position: relative;
   display: inline-block;
   background: var(--board-bg);
-  border: 3px solid #ffe3ee;
+  border: 3px solid #e6ddfb;
   border-radius: 20px;
   padding: 6px;
-  box-shadow: 0 14px 34px rgba(255,150,190,0.28);
+  box-shadow: 0 14px 34px rgba(150,120,230,0.3);
 }
 
 .board {
@@ -239,7 +239,7 @@ button:active { transform: translateY(1px); }
   stroke-width: 5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 6px rgba(255,94,156,0.85));
+  filter: drop-shadow(0 0 6px rgba(124,92,255,0.85));
   stroke-dasharray: 1000;
   animation: dashIn .25s ease-out forwards;
 }
@@ -250,7 +250,7 @@ button:active { transform: translateY(1px); }
   left: 50%;
   bottom: 10px;
   transform: translateX(-50%);
-  background: rgba(120, 70, 95, 0.9);
+  background: rgba(88, 74, 120, 0.92);
   color: #fff;
   padding: 8px 16px;
   border-radius: 20px;
@@ -265,7 +265,7 @@ button:active { transform: translateY(1px); }
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(255, 200, 220, 0.55);
+  background: rgba(205, 195, 245, 0.55);
   backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
@@ -279,8 +279,8 @@ button:active { transform: translateY(1px); }
   padding: 32px 44px;
   border-radius: 24px;
   text-align: center;
-  border: 3px solid #ffe3ee;
-  box-shadow: 0 24px 60px rgba(255,140,185,0.4);
+  border: 3px solid #e6ddfb;
+  box-shadow: 0 24px 60px rgba(140,110,225,0.42);
 }
 .overlay-card h2 { margin: 0 0 8px; font-size: 30px; color: var(--accent-deep); }
 .overlay-card p { margin: 0 0 20px; color: var(--ink-soft); }
