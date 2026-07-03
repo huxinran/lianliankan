@@ -1,3 +1,5 @@
-.claude/
+# Ignore local Claude config, but keep project skills in the repo
+.claude/*
+!.claude/skills/
 .DS_Store
 Thumbs.db

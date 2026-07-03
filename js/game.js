@@ -18,6 +18,7 @@ const el = {
   hints: document.getElementById("hints"),
   shuffles: document.getElementById("shuffles"),
   difficulty: document.getElementById("difficulty"),
+  imageSet: document.getElementById("imageSet"),
   overlay: document.getElementById("overlay"),
   overlayTitle: document.getElementById("overlayTitle"),
   overlaySub: document.getElementById("overlaySub"),
@@ -70,7 +71,7 @@ function newGame() {
 
   // Pick faces and build a pool where every face appears an even number
   // of times — this guarantees the board can be fully cleared.
-  const faces = pickImageSet(cfg.types);
+  const faces = pickImageSet(cfg.types, el.imageSet.value);
   const facePool = [];
   for (let i = 0; i < pairCount; i++) {
     facePool.push(faces[i % faces.length]);
@@ -376,5 +377,14 @@ document.getElementById("hintBtn").addEventListener("click", useHint);
 document.getElementById("shuffleBtn").addEventListener("click", useShuffle);
 document.getElementById("overlayBtn").addEventListener("click", newGame);
 el.difficulty.addEventListener("change", newGame);
+el.imageSet.addEventListener("change", newGame);
+
+// Populate the image-set dropdown from config, then start.
+for (const { value, label } of listImageSets()) {
+  const opt = document.createElement("option");
+  opt.value = value;
+  opt.textContent = label;
+  el.imageSet.appendChild(opt);
+}
 
 newGame();
