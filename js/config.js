@@ -32,22 +32,6 @@ const IMAGE_SETS = {
   },
   ---------------------------------------------------------------- */
 
-  poodle: {
-    label: "牛牛运动会 🐩",
-    kind: "image",
-    cover: "images/poodle/cover.png", // shown on the home-screen picker card
-    dir: "images/poodle/",
-    files: [
-      "01-american-football.png", "02-soccer.png", "03-basketball.png",
-      "04-tennis.png", "05-baseball.png", "06-volleyball.png",
-      "07-swimming.png", "08-surfing.png", "09-skateboarding.png",
-      "10-gymnastics.png", "11-cycling.png", "12-running.png",
-      "13-golf.png", "14-ice-hockey.png", "15-boxing.png",
-      "16-skiing.png", "17-snowboarding.png", "18-cheerleading.png",
-      "19-pickleball.png", "20-roller-skating.png",
-    ],
-  },
-
   cat: {
     label: "猫猫日常 🐱",
     kind: "image",
@@ -64,11 +48,27 @@ const IMAGE_SETS = {
     ],
   },
 
+  poodle: {
+    label: "牛牛运动会 🐩",
+    kind: "image",
+    cover: "images/poodle/cover.png", // shown on the home-screen picker card
+    dir: "images/poodle/",
+    files: [
+      "01-american-football.png", "02-soccer.png", "03-basketball.png",
+      "04-tennis.png", "05-baseball.png", "06-volleyball.png",
+      "07-swimming.png", "08-surfing.png", "09-skateboarding.png",
+      "10-gymnastics.png", "11-cycling.png", "12-running.png",
+      "13-golf.png", "14-ice-hockey.png", "15-boxing.png",
+      "16-skiing.png", "17-snowboarding.png", "18-cheerleading.png",
+      "19-pickleball.png", "20-roller-skating.png",
+    ],
+  },
+
   /* >>> The /add-image-set skill appends new sets below this line <<< */
 };
 
 // Fallback set used when a chosen set has too few faces for the difficulty.
-const DEFAULT_SET = "poodle";
+const DEFAULT_SET = "cat";
 
 /** Resolve a set by name, falling back to the default. */
 function getImageSet(name) {
